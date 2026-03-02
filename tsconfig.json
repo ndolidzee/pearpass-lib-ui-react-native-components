@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-native"
+  },
+  "include": [
+    "src/**/*",
+    ".storybook/**/*",
+    ".*.js",
+    "*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "dist"
+  ]
+}
