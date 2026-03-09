@@ -19,6 +19,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const storyStyles = css.create({
+  container: {
+    width: '80%'
+  },
   stack: {
     width: '80%',
     display: 'flex',
@@ -54,6 +57,13 @@ const defaultOptions = [
 ]
 
 export const Playground: Story = {
+  decorators: [
+    (Story) => (
+      <html.div style={storyStyles.container}>
+        <Story />
+      </html.div>
+    )
+  ],
   args: {
     options: defaultOptions,
     value: 'option1'
