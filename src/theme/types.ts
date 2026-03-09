@@ -12,8 +12,10 @@ export interface ThemeColors {
     colorOnPrimary: string;
     colorTextSecondary: string;
     colorTextDisabled: string;
+    colorTextDestructive: string;
 
     colorBorderPrimary: string;
+    colorBorderPrimaryAccent: string;
     colorBorderSecondary: string;
 
     colorSurfaceHover: string;
@@ -22,6 +24,7 @@ export interface ThemeColors {
     colorSurfaceDestructiveElevated: string;
     colorSurfaceError: string;
     colorSurfaceWarning: string;
+    colorSurfaceDestructive: string;
 
     colorFocusRing: string;
 }
