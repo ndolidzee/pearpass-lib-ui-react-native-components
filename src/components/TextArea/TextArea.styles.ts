@@ -28,7 +28,7 @@ export const styles = css.create({
         transitionTimingFunction: 'ease',
         width: '100%',
         ':hover': {
-            borderColor: tokens.colorBorderPrimaryAccent,
+            borderColor: tokens.colorPrimary,
             backgroundColor: tokens.colorSurfaceHover,
         },
     },

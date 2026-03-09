@@ -2,9 +2,16 @@ import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './TextArea.styles'
 import { FieldError } from '../FieldError'
-import { TextAreaProps } from './types'
 
 type HtmlTextareaProps = React.ComponentProps<typeof html.textarea>
+
+export type TextAreaProps = Omit<HtmlTextareaProps, 'onChange' | 'style'> & {
+  label?: string
+  error?: string
+  disabled?: boolean
+  onChange?: (value: string) => void
+  testID?: string
+}
 
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(

@@ -2,7 +2,11 @@ import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './FieldError.styles'
 import { ErrorFilled } from '../../icons'
-import { FieldErrorProps } from './types'
+
+export interface FieldErrorProps {
+  children: React.ReactNode
+  id?: string
+}
 
 export const FieldError = ({ children, id }: FieldErrorProps) => {
   return (

@@ -10,7 +10,7 @@ export const styles = css.create({
         marginTop: tokens.spacing4,
     },
     text: {
-        color: tokens.colorTextDestructive,
+        color: tokens.colorSurfaceDestructiveElevated,
         fontSize: tokens.fontSize12,
         fontFamily: tokens.fontPrimary,
         fontWeight: tokens.weightRegular,
@@ -19,7 +19,7 @@ export const styles = css.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: tokens.colorTextDestructive,
+        color: tokens.colorSurfaceDestructiveElevated,
         lineHeight: 0,
         flexShrink: 0,
     },

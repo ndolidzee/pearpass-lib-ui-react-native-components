@@ -12,10 +12,8 @@ export interface ThemeColors {
     colorOnPrimary: string;
     colorTextSecondary: string;
     colorTextDisabled: string;
-    colorTextDestructive: string;
 
     colorBorderPrimary: string;
-    colorBorderPrimaryAccent: string;
     colorBorderSecondary: string;
 
     colorSurfaceHover: string;
