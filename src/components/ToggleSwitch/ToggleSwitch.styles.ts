@@ -6,6 +6,7 @@ export const styles = css.create({
     display: 'flex',
     alignItems: 'center',
     gap: tokens.spacing12,
+    justifyContent: 'space-between',
     alignSelf: 'stretch'
   },
   details: {
