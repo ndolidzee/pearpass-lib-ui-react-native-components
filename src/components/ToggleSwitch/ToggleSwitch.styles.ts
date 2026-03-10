@@ -28,12 +28,7 @@ export const styles = css.create({
     lineHeight: 'normal'
   },
   description: {
-    color: tokens.colorTextSecondary,
-    fontFamily: tokens.fontPrimary,
-    fontSize: tokens.fontSize12,
-    fontStyle: 'normal',
-    fontWeight: tokens.weightRegular,
-    lineHeight: 'normal'
+    color: tokens.colorTextSecondary
   },
   rail: {
     display: 'flex',

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { css, html } from 'react-strict-dom'
 import { ToggleSwitch } from './ToggleSwitch'
 import { tokens } from '../../theme/tokens.css'
+import { Text } from '../Text'
 
 const INCLUDE_PROPS = [
   'checked',
@@ -43,9 +44,6 @@ const storyStyles = css.create({
     gap: tokens.spacing12
   },
   sectionTitle: {
-    fontFamily: tokens.fontPrimary,
-    fontSize: tokens.fontSize12,
-    fontWeight: tokens.weightMedium,
     color: tokens.colorTextSecondary,
     textTransform: 'capitalize'
   }
@@ -87,7 +85,9 @@ export const States: Story = {
     return (
       <html.div style={storyStyles.stack}>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Interactive</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            Interactive
+          </Text>
           <ToggleSwitch
             checked={on}
             onChange={setOn}
@@ -96,7 +96,9 @@ export const States: Story = {
           />
         </html.div>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Off (static)</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            Off (static)
+          </Text>
           <ToggleSwitch
             checked={false}
             label="Notifications"
@@ -104,7 +106,9 @@ export const States: Story = {
           />
         </html.div>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>On (static)</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            On (static)
+          </Text>
           <ToggleSwitch
             checked={true}
             label="Notifications"
@@ -112,7 +116,9 @@ export const States: Story = {
           />
         </html.div>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Disabled off</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            Disabled off
+          </Text>
           <ToggleSwitch
             checked={false}
             disabled
@@ -121,7 +127,9 @@ export const States: Story = {
           />
         </html.div>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Disabled on</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            Disabled on
+          </Text>
           <ToggleSwitch
             checked={onDisabled}
             disabled
@@ -145,7 +153,9 @@ export const LabelVariants: Story = {
     return (
       <html.div style={storyStyles.stack}>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>Label only</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            Label only
+          </Text>
           <ToggleSwitch
             checked={withLabel}
             onChange={setWithLabel}
@@ -153,7 +163,9 @@ export const LabelVariants: Story = {
           />
         </html.div>
         <html.div style={storyStyles.section}>
-          <html.div style={storyStyles.sectionTitle}>No label</html.div>
+          <Text variant="caption" style={storyStyles.sectionTitle}>
+            No label
+          </Text>
           <ToggleSwitch
             checked={noLabel}
             onChange={setNoLabel}

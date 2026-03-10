@@ -2,6 +2,7 @@ import React from 'react'
 import { html } from 'react-strict-dom'
 import { styles } from './ToggleSwitch.styles'
 import { railStateStyleMap, knobStateStyleMap } from './ToggleSwitch.config'
+import { Text } from '../Text'
 
 type HtmlDivProps = React.ComponentProps<typeof html.div>
 
@@ -42,9 +43,11 @@ export const ToggleSwitch = React.forwardRef<HTMLDivElement, ToggleSwitchProps>(
       <html.div {...rest} ref={ref} style={styles.root}>
         {hasDetails && (
           <html.div style={styles.details}>
-            {label && <html.span style={styles.label}>{label}</html.span>}
+            {label && <Text>{label}</Text>}
             {description && (
-              <html.span style={styles.description}>{description}</html.span>
+              <Text variant="caption" style={styles.description}>
+                {description}
+              </Text>
             )}
           </html.div>
         )}

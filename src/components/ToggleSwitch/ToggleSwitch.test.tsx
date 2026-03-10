@@ -18,6 +18,16 @@ jest.mock('./ToggleSwitch.styles', () => ({
   }
 }))
 
+jest.mock('../Text/Text.styles', () => ({
+  styles: {
+    textBase: {},
+    variantLabel: {},
+    variantBody: {},
+    variantBodyEmphasized: {},
+    variantCaption: {}
+  }
+}))
+
 describe('ToggleSwitch', () => {
   it('renders without label or description', () => {
     let component: renderer.ReactTestRenderer
