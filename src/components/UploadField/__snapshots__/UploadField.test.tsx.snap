@@ -3,13 +3,13 @@
 exports[`UploadField renders context image when image prop is provided 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="UploadField/UploadField.tsx:137"
+  data-element-src="UploadField/UploadField.tsx:142"
   data-style-src="react-strict-dom:web/runtime.js"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="UploadField/UploadField.tsx:139"
+    data-element-src="UploadField/UploadField.tsx:144"
     data-style-src="react-strict-dom:web/runtime.js"
     ref={
       {
@@ -20,21 +20,21 @@ exports[`UploadField renders context image when image prop is provided 1`] = `
   >
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:147"
+      data-element-src="UploadField/UploadField.tsx:152"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <img
         alt="Logo"
         className="aspectRatio-xuw900x height-xt7dq6l maxWidth-x193iq5w"
-        data-element-src="UploadField/UploadField.tsx:148"
+        data-element-src="UploadField/UploadField.tsx:153"
         data-style-src="react-strict-dom:web/runtime.js"
         src="https://example.com/logo.png"
         style={{}}
       />
       <div
         className="margin-x1ghz6dp padding-x1717udv"
-        data-element-src="UploadField/UploadField.tsx:149"
+        data-element-src="UploadField/UploadField.tsx:154"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >
@@ -45,7 +45,7 @@ exports[`UploadField renders context image when image prop is provided 1`] = `
     </div>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:159"
+      data-element-src="UploadField/UploadField.tsx:164"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -64,10 +64,8 @@ exports[`UploadField renders context image when image prop is provided 1`] = `
           onClick={[Function]}
           ref={null}
           style={{}}
-        >
-          Upload a file
-        </a>
-         here
+        />
+         
       </p>
     </div>
     <input
@@ -99,14 +97,14 @@ exports[`UploadField renders context image when image prop is provided 1`] = `
 exports[`UploadField renders the upload area by default 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="UploadField/UploadField.tsx:137"
+  data-element-src="UploadField/UploadField.tsx:142"
   data-style-src="react-strict-dom:web/runtime.js"
   data-testid="upload-field"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="UploadField/UploadField.tsx:139"
+    data-element-src="UploadField/UploadField.tsx:144"
     data-style-src="react-strict-dom:web/runtime.js"
     ref={
       {
@@ -117,7 +115,7 @@ exports[`UploadField renders the upload area by default 1`] = `
   >
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:154"
+      data-element-src="UploadField/UploadField.tsx:159"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -127,7 +125,7 @@ exports[`UploadField renders the upload area by default 1`] = `
     </div>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:159"
+      data-element-src="UploadField/UploadField.tsx:164"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -146,10 +144,8 @@ exports[`UploadField renders the upload area by default 1`] = `
           onClick={[Function]}
           ref={null}
           style={{}}
-        >
-          Upload a file
-        </a>
-         here
+        />
+         
       </p>
     </div>
     <input

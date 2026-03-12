@@ -2,6 +2,32 @@ import React from 'react'
 import renderer, { act } from 'react-test-renderer'
 import { UploadField } from './UploadField'
 
+jest.mock('../Button/Button.styles', () => ({
+  styles: {
+    buttonBase: {},
+    fullWidth: {},
+    sizeSmall: {},
+    sizeMedium: {},
+    iconOnlySmall: {},
+    iconOnlyMedium: {},
+    label: {},
+    icon: {},
+    iconSize: () => ({}),
+    disabled: {},
+    loading: {},
+    loadingContent: {},
+    spinnerContainer: {},
+    spinner: {}
+  }
+}))
+jest.mock('../Button/Button.config', () => ({
+  variantStyleMap: {},
+  variantDisabledStyleMap: {},
+  sizeStyleMap: {},
+  iconOnlyStyleMap: {},
+  iconSizeMap: { small: 16, medium: 20 }
+}))
+
 jest.mock('./UploadField.styles', () => ({
   styles: {
     wrapper: {},
@@ -94,7 +120,12 @@ describe('UploadField', () => {
 
     act(() => {
       component = renderer.create(
-        <Controlled allowDragAndDrop={false} testID="upload-field" />
+        <Controlled
+          allowDragAndDrop={false}
+          uploadLinkText="Upload a file"
+          uploadSuffixText="here"
+          testID="upload-field"
+        />
       )
     })
 
@@ -109,7 +140,12 @@ describe('UploadField', () => {
 
     act(() => {
       component = renderer.create(
-        <Controlled allowDragAndDrop={true} testID="upload-field" />
+        <Controlled
+          allowDragAndDrop={true}
+          uploadLinkText="Upload file"
+          uploadSuffixText="or drag and drop it here"
+          testID="upload-field"
+        />
       )
     })
 
@@ -130,6 +166,27 @@ describe('UploadField', () => {
     const json = JSON.stringify(component.toJSON())
     expect(json).toContain('.PDF')
     expect(json).toContain('.PNG')
+  })
+
+  it('uses custom uploadLinkText, uploadSuffixText and formatsPrefix when provided', () => {
+    let component!: renderer.ReactTestRenderer
+
+    act(() => {
+      component = renderer.create(
+        <Controlled
+          uploadLinkText="ატვირთე ფაილი"
+          uploadSuffixText=" ან გადაათრიე აქ"
+          formatsPrefix="მხარდაჭერილი ფორმატები:"
+          acceptedFormats={['.pdf']}
+          testID="upload-field"
+        />
+      )
+    })
+
+    const json = JSON.stringify(component.toJSON())
+    expect(json).toContain('ატვირთე ფაილი')
+    expect(json).toContain(' ან გადაათრიე აქ')
+    expect(json).toContain('მხარდაჭერილი ფორმატები:')
   })
 
   it('renders context image when image prop is provided', () => {

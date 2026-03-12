@@ -133,23 +133,5 @@ export const styles = css.create({
     whiteSpace: 'nowrap',
     color: tokens.colorTextSecondary,
     width: '100%'
-  },
-
-  deleteButton: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    cursor: 'pointer',
-    color: tokens.colorTextSecondary,
-    padding: 0,
-    flexShrink: 0,
-    transitionProperty: 'color',
-    transitionDuration: '150ms',
-    transitionTimingFunction: 'ease-out',
-    ':hover': {
-      color: tokens.colorTextPrimary
-    }
   }
 })

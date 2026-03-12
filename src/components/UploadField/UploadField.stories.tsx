@@ -31,7 +31,10 @@ const meta: Meta<typeof UploadField> = {
         'maxFiles',
         'allowDragAndDrop',
         'image',
-        'imageAlt'
+        'imageAlt',
+        'uploadLinkText',
+        'uploadSuffixText',
+        'formatsPrefix'
       ]
     }
   },
@@ -43,6 +46,9 @@ const meta: Meta<typeof UploadField> = {
     allowDragAndDrop: { control: 'boolean' },
     image: { control: 'text' },
     imageAlt: { control: 'text' },
+    uploadLinkText: { control: 'text' },
+    uploadSuffixText: { control: 'text' },
+    formatsPrefix: { control: 'text' },
     onFilesChange: { action: 'filesChanged' }
   }
 }
@@ -61,7 +67,10 @@ export const Default: Story = {
   args: {
     acceptedFormats: ['.pdf', '.png', '.jpg'],
     maxFiles: 1,
-    allowDragAndDrop: false
+    allowDragAndDrop: false,
+    uploadLinkText: 'Upload a file',
+    uploadSuffixText: 'here',
+    formatsPrefix: 'Required formats:'
   },
   render: (args) => (
     <html.div style={storyStyles.container}>
@@ -74,7 +83,10 @@ export const WithDragAndDrop: Story = {
   args: {
     acceptedFormats: ['.pdf', '.png', '.jpg'],
     maxFiles: 1,
-    allowDragAndDrop: true
+    allowDragAndDrop: true,
+    uploadLinkText: 'Upload file',
+    uploadSuffixText: ' or drag and drop it here',
+    formatsPrefix: 'Required formats:'
   },
   render: (args) => (
     <html.div style={storyStyles.container}>
@@ -88,6 +100,9 @@ export const WithContextImage: Story = {
     image: 'https://placehold.co/40x40',
     imageAlt: 'Profile picture placeholder',
     acceptedFormats: ['.jpg', '.png'],
+    uploadLinkText: 'Upload a file',
+    uploadSuffixText: 'here',
+    formatsPrefix: 'Required formats:',
     maxFiles: 1
   },
   render: (args) => (
@@ -101,13 +116,32 @@ export const MultipleFiles: Story = {
   args: {
     acceptedFormats: ['.pdf', '.png', '.jpg'],
     maxFiles: 3,
-    allowDragAndDrop: true
+    allowDragAndDrop: true,
+    uploadLinkText: 'Upload file',
+    uploadSuffixText: ' or drag and drop it here',
+    formatsPrefix: 'Required formats:'
   },
   render: (args) => (
     <html.div style={storyStyles.container}>
       <Text variant="caption" style={storyStyles.label}>
         Upload area hides once all 3 slots are filled
       </Text>
+      <ControlledUploadField {...args} />
+    </html.div>
+  )
+}
+
+export const Localized: Story = {
+  args: {
+    acceptedFormats: ['.pdf', '.png'],
+    maxFiles: 1,
+    allowDragAndDrop: true,
+    uploadLinkText: 'Upload file',
+    uploadSuffixText: ' or drag and drop it here',
+    formatsPrefix: 'Required formats:'
+  },
+  render: (args) => (
+    <html.div style={storyStyles.container}>
       <ControlledUploadField {...args} />
     </html.div>
   )

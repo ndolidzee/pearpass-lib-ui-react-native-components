@@ -10,12 +10,8 @@ import { Link } from '../Link/Link'
 import { Text } from '../Text/Text'
 import { styles } from './UploadField.styles'
 import { UploadedFile } from './types'
-
-function formatFileSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
-}
+import { formatFileSize } from '../../utils'
+import { Button } from '../Button'
 
 function getFileIcon(mimeType: string): React.ReactElement {
   if (mimeType.startsWith('image/')) {
@@ -24,9 +20,12 @@ function getFileIcon(mimeType: string): React.ReactElement {
   return <InsertDriveFileOutlined width={16} height={16} />
 }
 
-function buildFormatsLabel(acceptedFormats?: string[]): string | undefined {
+function buildFormatsLabel(
+  acceptedFormats?: string[],
+  prefix?: string | undefined
+): string | undefined {
   if (!acceptedFormats || acceptedFormats.length === 0) return undefined
-  return `Required Format: ${acceptedFormats.join(', ').toUpperCase()}`
+  return `${prefix} ${acceptedFormats.join(', ').toUpperCase()}`
 }
 
 export interface UploadFieldProps {
@@ -37,6 +36,9 @@ export interface UploadFieldProps {
   acceptedFormats?: string[]
   maxFiles?: number
   allowDragAndDrop?: boolean
+  uploadLinkText?: string
+  uploadSuffixText?: string
+  formatsPrefix?: string
   files: UploadedFile[]
   onFilesChange: (files: UploadedFile[]) => void
   testID?: string
@@ -50,6 +52,9 @@ export const UploadField = ({
   acceptedFormats,
   maxFiles = 1,
   allowDragAndDrop = false,
+  uploadLinkText,
+  uploadSuffixText,
+  formatsPrefix,
   files,
   onFilesChange,
   testID
@@ -130,7 +135,7 @@ export const UploadField = ({
   }
 
   const showUploadArea = files.length < maxFiles
-  const formatsLabel = buildFormatsLabel(acceptedFormats)
+  const formatsLabel = buildFormatsLabel(acceptedFormats, formatsPrefix)
   const acceptAttr = acceptedFormats?.join(',')
 
   return (
@@ -158,21 +163,10 @@ export const UploadField = ({
 
           <html.div style={styles.textContainer}>
             <Text as="p" style={styles.mainText}>
-              {allowDragAndDrop ? (
-                <>
-                  <Link href="#" onClick={triggerInput}>
-                    Upload file
-                  </Link>
-                  {' or drag and drop it here'}
-                </>
-              ) : (
-                <>
-                  <Link href="#" onClick={triggerInput}>
-                    Upload a file
-                  </Link>
-                  {' here'}
-                </>
-              )}
+              <Link href="#" onClick={triggerInput}>
+                {uploadLinkText}
+              </Link>{' '}
+              {uploadSuffixText}
             </Text>
             {formatsLabel && (
               <Text variant="caption" style={styles.hintText}>
@@ -221,13 +215,12 @@ export const UploadField = ({
             </Text>
           </html.div>
 
-          <html.button
-            style={styles.deleteButton}
+          <Button
+            iconBefore={<TrashOutlined />}
+            variant="tertiary"
             onClick={() => removeFile(index)}
             aria-label={`Remove ${uploadedFile.name}`}
-          >
-            <TrashOutlined width={16} height={16} />
-          </html.button>
+          />
         </html.div>
       ))}
     </html.div>
