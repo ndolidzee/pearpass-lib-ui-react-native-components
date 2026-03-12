@@ -31,3 +31,5 @@ export { default as KeyboardArrowRightTone } from "./KeyboardArrowRightTone";
 export { default as TrashOutlined } from "./TrashOutlined";
 export { default as UploadFileFilled } from "./UploadFileFilled";
 export { default as VerifiedUser } from "./VerifiedUser";
+export { default as MoreVert } from "./MoreVert";
+export { default as Share } from "./Share";
