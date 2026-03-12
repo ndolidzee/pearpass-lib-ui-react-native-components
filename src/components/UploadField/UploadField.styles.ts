@@ -50,8 +50,8 @@ export const styles = css.create({
     alignItems: 'center',
     aspectRatio: '1/1',
     position: 'absolute',
-    right: `-${tokens.spacing8}`,
-    bottom: `-${tokens.spacing8}`,
+    right: `calc(-1 * ${tokens.spacing8})`,
+    bottom: `calc(-1 * ${tokens.spacing8})`,
     borderRadius: '6px',
     backgroundColor: tokens.colorSurfacePrimary,
     color: tokens.colorTextSecondary
