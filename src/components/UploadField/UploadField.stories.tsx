@@ -12,7 +12,7 @@ const storyStyles = css.create({
     display: 'flex',
     flexDirection: 'column',
     gap: tokens.spacing24,
-    maxWidth: '500px',
+    maxWidth: '350px',
     width: '100%'
   },
   label: {
@@ -40,7 +40,6 @@ const meta: Meta<typeof UploadField> = {
   },
   argTypes: {
     acceptedFormats: { control: false },
-    uploadIcon: { control: false },
     fileIcon: { control: false },
     maxFiles: { control: { type: 'number', min: 1 } },
     allowDragAndDrop: { control: 'boolean' },

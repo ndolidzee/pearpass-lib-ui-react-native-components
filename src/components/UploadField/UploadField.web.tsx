@@ -6,12 +6,12 @@ import {
   TrashOutlined,
   UploadFileFilled
 } from '../../icons'
+import { formatFileSize } from '../../utils'
+import { Button } from '../Button'
 import { Link } from '../Link/Link'
 import { Text } from '../Text/Text'
 import { styles } from './UploadField.styles'
 import { UploadedFile } from './types'
-import { formatFileSize } from '../../utils'
-import { Button } from '../Button'
 
 function getFileIcon(mimeType: string): React.ReactElement {
   if (mimeType.startsWith('image/')) {
@@ -48,7 +48,6 @@ export interface UploadFieldProps {
 export const UploadField = ({
   image,
   imageAlt = '',
-  uploadIcon,
   fileIcon,
   acceptedFormats,
   maxFiles = 1,
@@ -153,20 +152,18 @@ export const UploadField = ({
             <html.div style={styles.imageWrapper}>
               <html.img src={image} style={styles.image} alt={imageAlt} />
               <html.div style={styles.imageIconBadge}>
-                {uploadIcon ?? <UploadFileFilled width={16} height={16} />}
+                <UploadFileFilled width={16} height={16} />
               </html.div>
             </html.div>
           ) : (
             <html.div style={styles.uploadIconWrapper}>
-              {uploadIcon ?? <UploadFileFilled width={32} height={32} />}
+              <UploadFileFilled width={32} height={32} />
             </html.div>
           )}
 
           <html.div style={styles.textContainer}>
             <Text as="p" style={styles.mainText}>
-              <Link href="#" onClick={triggerInput}>
-                {uploadLinkText}
-              </Link>{' '}
+              <Link onClick={triggerInput}>{uploadLinkText}</Link>{' '}
               {uploadSuffixText}
             </Text>
             {formatsLabel && (

@@ -3,44 +3,44 @@
 exports[`UploadField renders context image when image prop is provided 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="UploadField/UploadField.tsx:71"
+  data-element-src="UploadField/UploadField.tsx:73"
   data-style-src="react-strict-dom:web/runtime.js"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="UploadField/UploadField.tsx:73"
+    data-element-src="UploadField/UploadField.tsx:75"
     data-style-src="react-strict-dom:web/runtime.js"
     style={{}}
   >
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:75"
+      data-element-src="UploadField/UploadField.tsx:77"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <img
         alt="Logo"
         className="aspectRatio-xuw900x height-xt7dq6l maxWidth-x193iq5w"
-        data-element-src="UploadField/UploadField.tsx:76"
+        data-element-src="UploadField/UploadField.tsx:78"
         data-style-src="react-strict-dom:web/runtime.js"
         src="https://example.com/logo.png"
         style={{}}
       />
-      <div
-        className="margin-x1ghz6dp padding-x1717udv"
-        data-element-src="UploadField/UploadField.tsx:77"
+      <span
+        className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+        data-element-src="UploadField/UploadField.tsx:79"
         data-style-src="react-strict-dom:web/runtime.js"
         style={{}}
       >
         <svg
           data-testid="icon-upload"
         />
-      </div>
+      </span>
     </div>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:87"
+      data-element-src="UploadField/UploadField.tsx:97"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
@@ -70,30 +70,30 @@ exports[`UploadField renders context image when image prop is provided 1`] = `
 exports[`UploadField renders the upload area by default 1`] = `
 <div
   className="margin-x1ghz6dp padding-x1717udv"
-  data-element-src="UploadField/UploadField.tsx:71"
+  data-element-src="UploadField/UploadField.tsx:73"
   data-style-src="react-strict-dom:web/runtime.js"
   data-testid="upload-field"
   style={{}}
 >
   <div
     className="margin-x1ghz6dp padding-x1717udv"
-    data-element-src="UploadField/UploadField.tsx:73"
+    data-element-src="UploadField/UploadField.tsx:75"
     data-style-src="react-strict-dom:web/runtime.js"
     style={{}}
   >
-    <div
-      className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:82"
+    <span
+      className="margin-x1ghz6dp padding-x1717udv textDecoration-x1hl2dhg textAlign-x16tdsg8 wordWrap-x1vvkbs"
+      data-element-src="UploadField/UploadField.tsx:88"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >
       <svg
         data-testid="icon-upload"
       />
-    </div>
+    </span>
     <div
       className="margin-x1ghz6dp padding-x1717udv"
-      data-element-src="UploadField/UploadField.tsx:87"
+      data-element-src="UploadField/UploadField.tsx:97"
       data-style-src="react-strict-dom:web/runtime.js"
       style={{}}
     >

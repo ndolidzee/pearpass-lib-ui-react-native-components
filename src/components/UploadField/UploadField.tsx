@@ -6,6 +6,7 @@ import {
   TrashOutlined,
   UploadFileFilled
 } from '../../icons'
+import { useTheme } from '../../theme'
 import { formatFileSize } from '../../utils'
 import { Button } from '../Button'
 import { Link } from '../Link/Link'
@@ -13,11 +14,11 @@ import { Text } from '../Text/Text'
 import { styles } from './UploadField.styles'
 import { UploadedFile } from './types'
 
-function getFileIcon(mimeType: string): React.ReactElement {
+function getFileIcon(mimeType: string, color: string): React.ReactElement {
   if (mimeType.startsWith('image/')) {
-    return <InsertPhotoOutlined width={16} height={16} />
+    return <InsertPhotoOutlined width={16} height={16} color={color} />
   }
-  return <InsertDriveFileOutlined width={16} height={16} />
+  return <InsertDriveFileOutlined width={16} height={16} color={color} />
 }
 
 function buildFormatsLabel(
@@ -31,7 +32,6 @@ function buildFormatsLabel(
 export interface UploadFieldProps {
   image?: string
   imageAlt?: string
-  uploadIcon?: React.ReactNode
   fileIcon?: React.ReactNode
   acceptedFormats?: string[]
   maxFiles?: number
@@ -48,7 +48,6 @@ export interface UploadFieldProps {
 export const UploadField = ({
   image,
   imageAlt = '',
-  uploadIcon,
   fileIcon,
   acceptedFormats,
   maxFiles = 1,
@@ -60,6 +59,8 @@ export const UploadField = ({
   onPress,
   testID
 }: UploadFieldProps): React.ReactElement => {
+  const { theme } = useTheme()
+
   const removeFile = (index: number) => {
     onFilesChange(files.filter((_, i) => i !== index))
   }
@@ -74,14 +75,22 @@ export const UploadField = ({
           {image ? (
             <html.div style={styles.imageWrapper}>
               <html.img src={image} style={styles.image} alt={imageAlt} />
-              <html.div style={styles.imageIconBadge}>
-                {uploadIcon ?? <UploadFileFilled width={16} height={16} />}
-              </html.div>
+              <html.span style={styles.imageIconBadge}>
+                <UploadFileFilled
+                  color={theme.colors.colorTextSecondary}
+                  width={16}
+                  height={16}
+                />
+              </html.span>
             </html.div>
           ) : (
-            <html.div style={styles.uploadIconWrapper}>
-              {uploadIcon ?? <UploadFileFilled width={32} height={32} />}
-            </html.div>
+            <html.span style={styles.uploadIconWrapper}>
+              <UploadFileFilled
+                color={theme.colors.colorTextSecondary}
+                width={32}
+                height={32}
+              />
+            </html.span>
           )}
 
           <html.div style={styles.textContainer}>
@@ -106,9 +115,10 @@ export const UploadField = ({
           style={styles.fileContainer}
         >
           <html.div style={styles.fileIconContainer}>
-            <html.div style={styles.fileIconInner}>
-              {fileIcon ?? getFileIcon(uploadedFile.type)}
-            </html.div>
+            <html.span style={styles.fileIconInner}>
+              {fileIcon ??
+                getFileIcon(uploadedFile.type, theme.colors.colorTextSecondary)}
+            </html.span>
           </html.div>
 
           <html.div style={styles.fileDetails}>
@@ -121,7 +131,9 @@ export const UploadField = ({
           </html.div>
 
           <Button
-            iconBefore={<TrashOutlined />}
+            iconBefore={
+              <TrashOutlined color={theme.colors.colorTextSecondary} />
+            }
             variant="tertiary"
             onClick={() => removeFile(index)}
             aria-label={`Remove ${uploadedFile.name}`}
