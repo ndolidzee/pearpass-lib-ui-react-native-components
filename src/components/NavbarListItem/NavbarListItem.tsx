@@ -20,6 +20,7 @@ export type NavbarListItemProps = Omit<
   showDivider?: boolean
   onClick?: HtmlButtonProps['onClick']
   testID?: string
+  additionalItems?: React.ReactNode
 }
 
 const ICON_ONLY_SIZE = ICON_SIZE + 16
@@ -38,6 +39,7 @@ export const NavbarListItem = React.forwardRef<
     showDivider = false,
     onClick,
     testID,
+    additionalItems,
     ...rest
   },
   ref
@@ -77,6 +79,10 @@ export const NavbarListItem = React.forwardRef<
         <html.span style={styles.count} aria-label={`${count} items`}>
           {count}
         </html.span>
+      )}
+
+      {additionalItems && (
+        <html.span style={styles.additionalItems}>{additionalItems}</html.span>
       )}
     </html.button>
   )

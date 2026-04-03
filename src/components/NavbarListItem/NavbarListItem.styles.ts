@@ -91,5 +91,10 @@ export const styles = css.create({
   iconOnly: (size: number) => ({
     width: size,
     justifyContent: 'center' as const
-  })
+  }),
+  additionalItems: {
+    fontSize: tokens.fontSize14,
+    display: 'flex',
+    alignItems: 'center'
+  }
 })

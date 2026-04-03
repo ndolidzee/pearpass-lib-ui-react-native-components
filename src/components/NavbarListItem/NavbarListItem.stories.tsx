@@ -8,7 +8,8 @@ import {
   AccountCircleOutlined,
   AccountCircleSharp,
   AccountCircleTone,
-  AccountCircleRound
+  AccountCircleRound,
+  MoreVert
 } from '../../icons'
 
 const INCLUDE_PROPS = ['label', 'count', 'selected', 'variant']
@@ -37,7 +38,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const variants: NavbarListItemVariant[] = ['default', 'secondary', 'destructive']
+const variants: NavbarListItemVariant[] = [
+  'default',
+  'secondary',
+  'destructive'
+]
 
 const storyStyles = css.create({
   container: {
@@ -151,9 +156,15 @@ export const ContentCombinations: Story = {
         <html.div style={storyStyles.sectionTitle}>Content variations</html.div>
         <html.div style={storyStyles.row}>
           <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>icon + label + count</html.div>
+            <html.div style={storyStyles.caption}>
+              icon + label + count
+            </html.div>
             <html.div style={storyStyles.container}>
-              <NavbarListItem icon={<AccountCircleFilled />} label="All Items" count={49} />
+              <NavbarListItem
+                icon={<AccountCircleFilled />}
+                label="All Items"
+                count={49}
+              />
             </html.div>
           </html.div>
           <html.div style={storyStyles.cell}>
@@ -193,14 +204,91 @@ export const DesktopNavbar: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
     <html.div style={storyStyles.container}>
-      <NavbarListItem icon={<AccountCircleFilled />} label="All Items" count={49} selected />
-      <NavbarListItem icon={<AccountCircleOutlined />} label="Logins" count={23} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleSharp />} label="Credit Card" count={4} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleTone />} label="Identities" count={2} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleRound />} label="Notes" count={6} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleOutlined />} label="Recovery Phrases" count={3} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleSharp />} label="Wi-Fi" count={8} variant="secondary" />
-      <NavbarListItem icon={<AccountCircleTone />} label="Other" count={3} variant="secondary" />
+      <NavbarListItem
+        icon={<AccountCircleFilled />}
+        label="All Items"
+        count={49}
+        selected
+      />
+      <NavbarListItem
+        icon={<AccountCircleOutlined />}
+        label="Logins"
+        count={23}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleSharp />}
+        label="Credit Card"
+        count={4}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleTone />}
+        label="Identities"
+        count={2}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleRound />}
+        label="Notes"
+        count={6}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleOutlined />}
+        label="Recovery Phrases"
+        count={3}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleSharp />}
+        label="Wi-Fi"
+        count={8}
+        variant="secondary"
+      />
+      <NavbarListItem
+        icon={<AccountCircleTone />}
+        label="Other"
+        count={3}
+        variant="secondary"
+      />
+    </html.div>
+  )
+}
+
+export const WithAdditionalItems: Story = {
+  args: { label: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.stack}>
+      <html.div style={storyStyles.section}>
+        <html.div style={storyStyles.sectionTitle}>
+          With additional items
+        </html.div>
+        <html.div style={storyStyles.container}>
+          <NavbarListItem
+            icon={<AccountCircleFilled />}
+            label="All Items"
+            count={49}
+            selected
+            additionalItems={<MoreVert />}
+          />
+          <NavbarListItem
+            icon={<AccountCircleOutlined />}
+            label="Logins"
+            count={23}
+            variant="secondary"
+            additionalItems={<MoreVert />}
+          />
+          <NavbarListItem
+            icon={<AccountCircleSharp />}
+            label="Credit Cards"
+            count={4}
+            variant="secondary"
+            additionalItems={<MoreVert />}
+          />
+        </html.div>
+      </html.div>
     </html.div>
   )
 }
@@ -211,23 +299,43 @@ export const WithActions: Story = {
   render: () => (
     <html.div style={storyStyles.stack}>
       <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Navbar with actions</html.div>
+        <html.div style={storyStyles.sectionTitle}>
+          Navbar with actions
+        </html.div>
         <html.div style={storyStyles.container}>
           <NavbarListItem icon={<AccountCircleFilled />} label="Rename" />
-          <NavbarListItem icon={<AccountCircleOutlined />} label="Manage Members" />
-          <NavbarListItem icon={<AccountCircleSharp />} label="Delete" variant="destructive" />
+          <NavbarListItem
+            icon={<AccountCircleOutlined />}
+            label="Manage Members"
+          />
+          <NavbarListItem
+            icon={<AccountCircleSharp />}
+            label="Delete"
+            variant="destructive"
+          />
         </html.div>
       </html.div>
 
       <html.div style={storyStyles.section}>
         <html.div style={storyStyles.sectionTitle}>Mixed list</html.div>
         <html.div style={storyStyles.container}>
-          <NavbarListItem icon={<AccountCircleFilled />} label="Authenticator" selected />
-          <NavbarListItem icon={<AccountCircleOutlined />} label="Settings" variant="secondary" />
-          <NavbarListItem icon={<AccountCircleSharp />} label="Lock App" variant="secondary" />
+          <NavbarListItem
+            icon={<AccountCircleFilled />}
+            label="Authenticator"
+            selected
+          />
+          <NavbarListItem
+            icon={<AccountCircleOutlined />}
+            label="Settings"
+            variant="secondary"
+          />
+          <NavbarListItem
+            icon={<AccountCircleSharp />}
+            label="Lock App"
+            variant="secondary"
+          />
         </html.div>
       </html.div>
     </html.div>
   )
 }
-
