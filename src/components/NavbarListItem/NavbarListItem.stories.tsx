@@ -1,18 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { css, html } from 'react-strict-dom'
 import { NavbarListItem } from './NavbarListItem'
+import { useTheme } from '../../theme'
 import { tokens } from '../../theme/tokens.css'
-import { NavbarListItemVariant } from './types'
+import type { NavbarListItemSize, NavbarListItemVariant } from './types'
 import {
   AccountCircleFilled,
   AccountCircleOutlined,
   AccountCircleSharp,
   AccountCircleTone,
   AccountCircleRound,
+  KeyboardArrowRightOutlined,
+  Swap,
+  VerifiedUser,
   MoreVert
 } from '../../icons'
 
-const INCLUDE_PROPS = ['label', 'count', 'selected', 'variant']
+const INCLUDE_PROPS = ['label', 'count', 'selected', 'variant', 'size']
 
 const meta = {
   title: 'Components/NavbarListItem',
@@ -29,6 +33,10 @@ const meta = {
       control: 'select',
       options: ['default', 'secondary', 'destructive']
     },
+    size: {
+      control: 'select',
+      options: ['small', 'big']
+    },
     label: { control: 'text' },
     count: { control: { type: 'number' } },
     icon: { control: false }
@@ -38,11 +46,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const variants: NavbarListItemVariant[] = [
-  'default',
-  'secondary',
-  'destructive'
-]
+const variants: NavbarListItemVariant[] = ['default', 'secondary', 'destructive']
+const sizes: NavbarListItemSize[] = ['small', 'big']
 
 const storyStyles = css.create({
   container: {
@@ -91,8 +96,44 @@ const storyStyles = css.create({
     fontSize: tokens.fontSize12,
     color: tokens.colorTextSecondary,
     textTransform: 'capitalize'
+  },
+  disclosureIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: 'rotate(90deg)'
   }
 })
+
+const MultipleIconsExample = () => {
+  const { theme } = useTheme()
+
+  return (
+    <html.div style={storyStyles.container}>
+      <NavbarListItem
+        label="Security"
+        size="small"
+        icon={
+          <>
+            <KeyboardArrowRightOutlined color={theme.colors.colorTextSecondary} />
+            <VerifiedUser color={theme.colors.colorTextPrimary} />
+          </>
+        }
+      />
+      <NavbarListItem
+        label="Syncing"
+        size="small"
+        icon={
+          <>
+            <KeyboardArrowRightOutlined color={theme.colors.colorTextSecondary} />
+            <Swap color={theme.colors.colorTextSecondary} />
+          </>
+        }
+        variant="secondary"
+      />
+    </html.div>
+  )
+}
 
 export const Playground: Story = {
   args: {
@@ -291,6 +332,39 @@ export const WithAdditionalItems: Story = {
       </html.div>
     </html.div>
   )
+}
+
+export const SizeMatrix: Story = {
+  args: { label: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <html.div style={storyStyles.stack}>
+      {sizes.map((size) => (
+        <html.div key={size} style={storyStyles.section}>
+          <html.div style={storyStyles.sectionTitle}>{size}</html.div>
+          <html.div style={storyStyles.container}>
+            <NavbarListItem
+              icon={<AccountCircleFilled />}
+              label="Settings"
+              size={size}
+            />
+            <NavbarListItem
+              icon={<AccountCircleOutlined />}
+              label="Appearance"
+              variant="secondary"
+              size={size}
+            />
+          </html.div>
+        </html.div>
+      ))}
+    </html.div>
+  )
+}
+
+export const WithMultipleIcons: Story = {
+  args: { label: 'Item' },
+  parameters: { controls: { disable: true } },
+  render: () => <MultipleIconsExample />
 }
 
 export const WithActions: Story = {

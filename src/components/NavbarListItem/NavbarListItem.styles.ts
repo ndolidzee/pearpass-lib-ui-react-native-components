@@ -7,11 +7,9 @@ export const styles = css.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: tokens.spacing8,
-    paddingBlock: tokens.spacing8,
-    paddingInline: tokens.spacing8,
+    marginBlock: 1,
     backgroundColor: 'transparent',
     borderWidth: 0,
-    borderRadius: tokens.radius8,
     cursor: 'pointer',
     textAlign: 'left',
     width: '100%',
@@ -34,7 +32,12 @@ export const styles = css.create({
       outlineOffset: -2
     }
   },
-  mobile: {
+  sizeSmall: {
+    borderRadius: tokens.radius8,
+    paddingBlock: tokens.spacing8,
+    paddingInline: tokens.spacing8
+  },
+  sizeBig: {
     borderRadius: 0,
     paddingBlock: tokens.spacing16,
     paddingInline: tokens.spacing16,
@@ -64,6 +67,15 @@ export const styles = css.create({
   },
   variantDestructive: {
     color: tokens.colorSurfaceDestructiveElevated
+  },
+  iconGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexShrink: 0
+  },
+  iconGroupItemSpacing: {
+    marginLeft: tokens.spacing8
   },
   icon: {
     display: 'flex',
