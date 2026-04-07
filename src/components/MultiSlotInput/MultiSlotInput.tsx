@@ -7,80 +7,80 @@ import { FieldError } from '../FieldError/FieldError';
 import { Button } from '../Button/Button';
 import SvgAdd from '../../icons/components/Add';
 import SvgClose from '../../icons/components/Close';
+import { useTheme } from '../../theme';
 
 export const MultiSlotInput = (props: MultiSlotInputProps): React.ReactElement => {
   const {
     label,
     values,
-    onChange,
+    onAdd,
+    onChangeItem,
+    onRemove,
+    placeholder,
     placeholderText,
     addButtonLabel = 'Add another',
     errorMessage,
     maxSlots,
+    disabled = false,
+    leftSlot,
+    rightSlot,
     testID,
   } = props;
 
-  const slots = values;
-
-  const isAtMax = maxSlots !== undefined && slots.length >= maxSlots;
-
-  const handleChange = (index: number, text: string) => {
-    const next = [...slots];
-    next[index] = text;
-    onChange(next);
-  };
-
-  const handleAdd = () => {
-    if (isAtMax) return;
-    onChange([...slots, '']);
-  };
-
-  const handleRemove = (index: number) => {
-    const next = slots.filter((_, i) => i !== index);
-    onChange(next);
-  };
+  const { theme } = useTheme();
+  const resolvedPlaceholder = placeholder ?? placeholderText;
+  const isAtMax = maxSlots !== undefined && values.length >= maxSlots;
 
   return (
     <html.div style={styles.root} data-testid={testID}>
       <html.div style={[styles.container, !!errorMessage && styles.containerError]}>
-        {slots.map((value, index) => {
+        {values.map((value, index) => {
+          const slotRemoveButton = !disabled && values.length > 1 ? (
+            <Button
+              variant="tertiary"
+              size="small"
+              aria-label={`Remove slot ${index + 1}`}
+              onClick={() => onRemove(index)}
+              data-testid={testID ? `${testID}-remove-button-${index}` : undefined}
+              iconBefore={<SvgClose color={theme.colors.colorPrimary} />}
+            />
+          ) : undefined;
+
+          const resolvedRightSlot = rightSlot ? (
+            <>
+              {rightSlot(index)}
+              {slotRemoveButton}
+            </>
+          ) : slotRemoveButton;
+
           return (
             <html.div style={styles.row} key={index}>
               <InputField
                 label={label}
                 value={value}
-                placeholderText={placeholderText}
-                onChangeText={(text) => handleChange(index, text)}
+                placeholder={resolvedPlaceholder}
+                onChangeText={(text) => onChangeItem(index, text)}
                 variant={'default'}
                 isGrouped={true}
+                disabled={disabled}
                 testID={testID ? `${testID}-slot-${index}` : undefined}
-                rightSlot={
-                  slots.length > 1 ? (
-                    <Button
-                      variant="tertiary"
-                      size="small"
-                      aria-label={`Remove slot ${index + 1}`}
-                      onClick={() => handleRemove(index)}
-                      data-testid={testID ? `${testID}-remove-button-${index}` : undefined}
-                      iconBefore={<html.span style={styles.removeIconWrapper}><SvgClose /></html.span>}
-                    />
-                  ) : undefined
-                }
+                leftSlot={leftSlot}
+                rightSlot={resolvedRightSlot}
               />
             </html.div>
           );
         })}
 
-        {!isAtMax && (
+        {!isAtMax && !disabled && (
           <html.div style={styles.ctaSlot}>
             <Button
               variant="tertiary"
-              onClick={handleAdd}
+              onClick={onAdd}
               aria-label={addButtonLabel}
               data-testid={testID ? `${testID}-add-button` : undefined}
-              iconBefore={<html.span style={styles.addIcon}><SvgAdd /></html.span>}
+              iconBefore={<SvgAdd color={theme.colors.colorPrimary} />}
             >
-              <html.span style={styles.addButtonLabel}>{addButtonLabel}</html.span>
+              {addButtonLabel}
             </Button>
           </html.div>
         )}
