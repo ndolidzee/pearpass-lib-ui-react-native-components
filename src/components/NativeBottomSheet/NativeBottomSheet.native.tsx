@@ -1,17 +1,20 @@
-import React, { createContext, useCallback, useContext, useMemo, useRef } from 'react'
+import React, { useCallback, createContext, useEffect, useMemo, useRef, useContext } from 'react'
 import { View, Pressable } from 'react-native'
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 import type { BottomSheetBackdropProps } from '@gorhom/bottom-sheet'
+import type { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types'
 import { useTheme } from '../../theme/ThemeContext'
 import { rawTokens } from '../../theme/tokens.raw'
 
-const BottomSheetCloseContext = createContext<() => void>(() => {})
+const BottomSheetCloseContext = createContext<() => void>(() => { })
 
 export const useBottomSheetClose = () => useContext(BottomSheetCloseContext)
 
 export type NativeBottomSheetProps = {
-  trigger: React.ReactNode
+  trigger?: React.ReactNode
   children: React.ReactNode
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
   testID?: string
   openOnLongPress?: boolean
 }
@@ -19,13 +22,16 @@ export type NativeBottomSheetProps = {
 export const NativeBottomSheet: React.FC<NativeBottomSheetProps> = ({
   trigger,
   children,
-  testID,
-  openOnLongPress = false
+  open,
+  onOpenChange,
+  openOnLongPress = false,
+  testID
 }) => {
   const { theme } = useTheme()
   // gorhom doesn't publicly export BottomSheetModalMethods, so any is the only viable ref type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const bottomSheetRef = useRef<any>(null)
+  const isControlled = open !== undefined
 
   const backgroundStyle = useMemo(() => ({
     backgroundColor: theme.colors.colorSurfacePrimary,
@@ -56,8 +62,18 @@ export const NativeBottomSheet: React.FC<NativeBottomSheetProps> = ({
   }), [theme])
 
   const handleOpen = useCallback(() => {
+    if (isControlled) {
+      onOpenChange?.(true)
+      return
+    }
+
     bottomSheetRef.current?.present()
-  }, [])
+    onOpenChange?.(true)
+  }, [isControlled, onOpenChange])
+
+  const handleDismiss = useCallback(() => {
+    onOpenChange?.(false)
+  }, [onOpenChange])
 
   const handleClose = useCallback(() => {
     bottomSheetRef.current?.dismiss()
@@ -70,30 +86,44 @@ export const NativeBottomSheet: React.FC<NativeBottomSheetProps> = ({
     []
   )
 
+  useEffect(() => {
+    if (!isControlled) {
+      return
+    }
+
+    if (open) {
+      bottomSheetRef.current?.present()
+      return
+    }
+
+    ; (bottomSheetRef.current as unknown as BottomSheetModalMethods | null)?.dismiss()
+  }, [isControlled, open])
+
   const triggerElement = openOnLongPress
     ? React.isValidElement(trigger)
       ? React.cloneElement(trigger as React.ReactElement<{ onLongPress?: () => void }>, {
-          onLongPress: handleOpen
-        })
+        onLongPress: handleOpen
+      })
       : trigger
     : (
       <Pressable onPress={handleOpen}>
         {React.isValidElement(trigger)
           ? React.cloneElement(trigger as React.ReactElement<{ onClick?: () => void }>, {
-              onClick: handleOpen
-            })
+            onClick: handleOpen
+          })
           : trigger}
       </Pressable>
     )
 
   return (
     <View testID={testID}>
-      {triggerElement}
+      {trigger ? triggerElement : null}
 
       <BottomSheetModal
         ref={bottomSheetRef}
         enableDynamicSizing
         backdropComponent={renderBackdrop}
+        onDismiss={handleDismiss}
         backgroundStyle={backgroundStyle}
         handleComponent={null}
       >

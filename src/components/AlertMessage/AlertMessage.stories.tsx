@@ -101,48 +101,48 @@ export const VariantMatrix: Story = {
   },
   render: () => (
     <StoryScrollContainer>
-    <html.div style={storyStyles.container}>
-      <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Small</html.div>
-        <html.div style={storyStyles.row}>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Warning</html.div>
-            <AlertMessage variant="warning" size="small" title="" description="Don't forget your Master password. It's the only way to access your vault." />
-          </html.div>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Error</html.div>
-            <AlertMessage variant="error" size="small" title="" description="Small error message." />
+      <html.div style={storyStyles.container}>
+        <html.div style={storyStyles.section}>
+          <html.div style={storyStyles.sectionTitle}>Small</html.div>
+          <html.div style={storyStyles.row}>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Warning</html.div>
+              <AlertMessage variant="warning" size="small" title="" description="Don't forget your Master password. It's the only way to access your vault." />
+            </html.div>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Error</html.div>
+              <AlertMessage variant="error" size="small" title="" description="Small error message." />
+            </html.div>
           </html.div>
         </html.div>
-      </html.div>
 
-      <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Medium</html.div>
-        <html.div style={storyStyles.row}>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Warning</html.div>
-            <AlertMessage variant="warning" size="medium" title="Warning" description="Medium warning message." />
+        <html.div style={storyStyles.section}>
+          <html.div style={storyStyles.sectionTitle}>Medium</html.div>
+          <html.div style={storyStyles.row}>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Warning</html.div>
+              <AlertMessage variant="warning" size="medium" title="Warning" description="Medium warning message." />
+            </html.div>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Error with Action</html.div>
+              <AlertMessage variant="error" size="medium" title="Error" description="Medium error with action." actionText="Retry" onAction={() => { }} />
+            </html.div>
           </html.div>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Error with Action</html.div>
-            <AlertMessage variant="error" size="medium" title="Error" description="Medium error with action." actionText="Retry" onAction={() => {}} />
+        </html.div>
+        <html.div style={storyStyles.section}>
+          <html.div style={storyStyles.sectionTitle}>Big</html.div>
+          <html.div style={storyStyles.row}>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Warning</html.div>
+              <AlertMessage variant="warning" size="big" title="Warning" description="Big warning message." />
+            </html.div>
+            <html.div style={storyStyles.cell}>
+              <html.div style={storyStyles.caption}>Error with Action</html.div>
+              <AlertMessage variant="error" size="big" title="Error" description="Big error with action." actionText="Retry" onAction={() => { }} />
+            </html.div>
           </html.div>
         </html.div>
       </html.div>
-      <html.div style={storyStyles.section}>
-        <html.div style={storyStyles.sectionTitle}>Big</html.div>
-        <html.div style={storyStyles.row}>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Warning</html.div>
-            <AlertMessage variant="warning" size="big" title="Warning" description="Big warning message." />
-          </html.div>
-          <html.div style={storyStyles.cell}>
-            <html.div style={storyStyles.caption}>Error with Action</html.div>
-            <AlertMessage variant="error" size="big" title="Error" description="Big error with action." actionText="Retry" onAction={() => {}} />
-          </html.div>
-        </html.div>
-      </html.div>
-    </html.div>
     </StoryScrollContainer>
   ),
 };
